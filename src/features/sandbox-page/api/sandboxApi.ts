@@ -9,7 +9,6 @@ export const fetchPlaceholders = createServerFn({method: "GET"}).handler(
             throw new Error(`Failed to fetch placeholder: ${response.statusText}`)
         }
 
-        console.log("WIJFgIHRn tkodrnh oernsss")
         return await response.json();
     } 
 )
