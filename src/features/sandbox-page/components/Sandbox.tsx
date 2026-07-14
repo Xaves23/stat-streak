@@ -1,18 +1,18 @@
-import { queryOptions, useSuspenseQuery } from "@tanstack/react-query"
-import { fetchPlaceholders } from "../api/sandboxApi"
-import { Link } from "@tanstack/react-router"
-import { Button } from "@/components/ui/button"
+import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
+import { Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
+import { fetchPlaceholders } from "../api/sandboxApi";
 
 export const placeholdersQueryOptions = () =>
   queryOptions({
     queryKey: ["placeholders"],
     queryFn: () => fetchPlaceholders(),
     staleTime: 1000 * 60 * 60 * 24,
-  })
+  });
 
 // 4. Component
 export function Sandbox() {
-  const { data: placeholders } = useSuspenseQuery(placeholdersQueryOptions())
+  const { data: placeholders } = useSuspenseQuery(placeholdersQueryOptions());
 
   return (
     <div className="p-4">
@@ -30,5 +30,5 @@ export function Sandbox() {
         <Link to={"/"}>To index</Link>
       </Button>
     </div>
-  )
+  );
 }
