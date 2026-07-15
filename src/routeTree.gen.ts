@@ -9,9 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TeamRecordsRouteImport } from './routes/team-records'
 import { Route as SandboxRouteImport } from './routes/sandbox'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TeamRecordsRoute = TeamRecordsRouteImport.update({
+  id: '/team-records',
+  path: '/team-records',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SandboxRoute = SandboxRouteImport.update({
   id: '/sandbox',
   path: '/sandbox',
@@ -26,31 +32,42 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/sandbox': typeof SandboxRoute
+  '/team-records': typeof TeamRecordsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/sandbox': typeof SandboxRoute
+  '/team-records': typeof TeamRecordsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/sandbox': typeof SandboxRoute
+  '/team-records': typeof TeamRecordsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sandbox'
+  fullPaths: '/' | '/sandbox' | '/team-records'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sandbox'
-  id: '__root__' | '/' | '/sandbox'
+  to: '/' | '/sandbox' | '/team-records'
+  id: '__root__' | '/' | '/sandbox' | '/team-records'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SandboxRoute: typeof SandboxRoute
+  TeamRecordsRoute: typeof TeamRecordsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/team-records': {
+      id: '/team-records'
+      path: '/team-records'
+      fullPath: '/team-records'
+      preLoaderRoute: typeof TeamRecordsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sandbox': {
       id: '/sandbox'
       path: '/sandbox'
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SandboxRoute: SandboxRoute,
+  TeamRecordsRoute: TeamRecordsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

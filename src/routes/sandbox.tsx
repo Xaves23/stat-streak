@@ -7,6 +7,5 @@ import {
 export const Route = createFileRoute("/sandbox")({
   loader: ({ context }) =>
     context.queryClient.ensureQueryData(placeholdersQueryOptions()),
-
   component: Sandbox,
 });

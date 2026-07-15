@@ -10,17 +10,16 @@ export const placeholdersQueryOptions = () =>
     staleTime: 1000 * 60 * 60 * 24,
   });
 
-// 4. Component
 export function Sandbox() {
   const { data: placeholders } = useSuspenseQuery(placeholdersQueryOptions());
 
   return (
     <div className="p-4">
-      <h1 className="mb-4 text-xl font-bold">Sandbox Posts</h1>
+      <h1 className="mb-4 font-bold text-xl">Sandbox Posts</h1>
       <ul className="space-y-3">
         {placeholders.slice(0, 5).map((post) => (
           <li key={post.id} className="border-b pb-2">
-            <h2 className="text-lg font-semibold">{post.title}</h2>
+            <h2 className="font-semibold text-lg">{post.title}</h2>
             <p className="text-gray-600">{post.body}</p>
           </li>
         ))}
@@ -28,6 +27,9 @@ export function Sandbox() {
 
       <Button>
         <Link to={"/"}>To index</Link>
+      </Button>
+      <Button>
+        <Link to={"/team-records"}>To team records</Link>
       </Button>
     </div>
   );
