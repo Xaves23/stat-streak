@@ -28,6 +28,9 @@ export function Sandbox() {
       <Button>
         <Link to={"/"}>To index</Link>
       </Button>
+      <Button>
+        <Link to={"/team-records"}>To team records</Link>
+      </Button>
     </div>
   );
 }
