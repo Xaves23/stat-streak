@@ -28,6 +28,7 @@ export const transformTeamStandingsResponseToTeamRecord = (
       awayWins: entry.stats[30].value ?? 0,
       awayLosses: entry.stats[28].value ?? 0,
       percentage: entry.stats[17].value ?? 0,
+      streak: entry.stats[15].value ?? 0,
       winsInLastTen: lastTen.wins,
       lossesInLastTen: lastTen.losses,
     };

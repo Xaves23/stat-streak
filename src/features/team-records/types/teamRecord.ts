@@ -11,4 +11,5 @@ export interface TeamRecord {
   percentage: number;
   winsInLastTen: number;
   lossesInLastTen: number;
+  streak: number;
 }
